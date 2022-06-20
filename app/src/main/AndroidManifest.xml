@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.healthy">
+
+    <uses-feature
+        android:name="android.hardware.sensor.stepcounter"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission
+        android:name="android.permission.ACCESS_FINE_LOCATION"
+        tools:ignore="CoarseFineLocation" />
+    <uses-permission android:name="android.permission. ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Healthy">
+        <activity
+            android:name=".chart.ChartActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ActivityInfoHealthy"
+            android:exported="false" />
+        <activity
+            android:name=".calories.MealDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".calories.CaloriesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityTimeSleep"
+            android:exported="false" />
+        <activity
+            android:name=".WaterActivity"
+            android:exported="false" />
+
+        <service
+            android:name=".service.StepService"
+            android:enabled="true"
+            android:exported="true" />
+        <service android:name=".service.HealthyService" />
+
+        <activity
+            android:name=".heart_rate.HeartRate"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityPlayVideo"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityDetailEvent"
+            android:exported="false" />
+        <activity
+            android:name=".setup.AgeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SetUpInfo"
+            android:exported="false" />
+        <activity android:name=".step.StepActivity" />
+        <activity android:name=".MainActivity" /> <!-- <activity android:name=".step.StepActivity" /> &lt;!&ndash; <activity android:name=".account.ActivityLogin"></activity> &ndash;&gt; -->
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name=".untils.NotificationPublisher"
+            android:exported="true" />
+        <receiver android:name=".alarm.AlarmReceiver" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>

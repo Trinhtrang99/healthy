@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Outlined.Theme" parent="Theme.MaterialComponents">
+        <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox</item>
+    </style>
+
+    <style name="BottomNavigationView.Active" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">@dimen/text_10</item>
+        <item name="android:fontFamily">@font/hiragino_sans_w3</item>
+    </style>
+
+    <style name="BottomNavigationView" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">@dimen/text_10</item>
+        <item name="android:fontFamily">@font/hiragino_sans_w3</item>
+    </style>
+    <style name="CustomDialog" parent="android:Theme.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/dlg_background_white</item>
+    </style>
+
+    <style name="text_style_tabLayout">
+        <item name="android:textSize">@dimen/text_17</item>
+        <item name="android:textColor">@color/txt_color_414b77</item>
+        <item name="android:fontFamily">@font/hiragino_sans_w3</item>
+    </style>
+</resources>

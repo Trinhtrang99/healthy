@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".calories.CaloriesActivity">
+
+        <TextView
+            android:layout_marginHorizontal="@dimen/text_20"
+            android:id="@+id/Rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="40dp"
+            android:fontFamily="@font/hiragino_sans_w6"
+            android:textColor="@color/txt_color" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp">
+
+            <com.timqi.sectorprogressview.ColorfulRingProgressView
+                android:id="@+id/crRun"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_centerInParent="true"
+                app:bgColor="#e1e1e1"
+                app:fgColorEnd="#4FED4A"
+                app:fgColorStart="#4FED4A"
+                app:percent="10"
+                app:startAngle="0"
+                app:strokeWidth="10dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/tvCalo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="0\n kcal" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Protein" />
+
+                <TextView
+                    android:id="@+id/tvValueProtein"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="0/223g"
+                    android:textColor="@color/blue_2c3764"
+                    android:textStyle="bold" />
+
+                <ProgressBar
+                    android:id="@+id/process1"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:max="100"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="6dp"
+                    android:progress="10"
+                    android:progressDrawable="@drawable/custom_processbar" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Fat" />
+
+                <TextView
+                    android:id="@+id/tvValueFat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="0/223g"
+                    android:textColor="@color/blue_2c3764"
+                    android:textStyle="bold" />
+
+                <ProgressBar
+                    android:id="@+id/process2"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:max="100"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="6dp"
+                    android:progress="10"
+                    android:progressDrawable="@drawable/custom_processbar" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Energy" />
+
+                <TextView
+                    android:id="@+id/tvValueCar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="0/223g"
+                    android:textColor="@color/blue_2c3764"
+                    android:textStyle="bold" />
+
+                <ProgressBar
+                    android:id="@+id/process3"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:max="100"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="6dp"
+                    android:progress="10"
+                    android:progressDrawable="@drawable/custom_processbar" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/transperant_btn" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp">
+
+            <ImageView
+                android:id="@+id/icon_bre"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_breakfast" />
+
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_toRightOf="@id/icon_bre"
+                android:text="Bữa sáng"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_17"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv1"
+                android:layout_marginStart="10dp"
+                android:layout_toRightOf="@id/icon_bre"
+                android:singleLine="true"
+
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_17" />
+
+            <ImageView
+                android:id="@+id/imgAddBreak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_baseline_add_24" />
+
+            <TextView
+                android:id="@+id/tvKalo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="6777"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_17"
+                android:visibility="invisible" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/icon_luch"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_luch" />
+
+            <TextView
+                android:id="@+id/tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_toRightOf="@id/icon_luch"
+                android:text="Bữa trưa"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_17"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv2"
+                android:layout_marginStart="10dp"
+                android:layout_toRightOf="@id/icon_luch"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_17" />
+
+            <ImageView
+                android:id="@+id/imgAddLunch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_baseline_add_24" />
+
+            <TextView
+                android:id="@+id/tvKaloLuch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="6777"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_17"
+                android:visibility="invisible" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/icon_dinner"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_dinner" />
+
+            <TextView
+                android:id="@+id/tv3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_toRightOf="@id/icon_dinner"
+                android:text="Bữa tối"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_17"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv3"
+                android:layout_marginStart="10dp"
+                android:layout_toRightOf="@id/icon_dinner"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_17" />
+
+            <ImageView
+                android:id="@+id/iconAddDinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_baseline_add_24" />
+
+            <TextView
+                android:id="@+id/tvKaloDinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="6777"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_17"
+                android:visibility="invisible" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</layout>
+

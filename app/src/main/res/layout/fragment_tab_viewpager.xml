@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_color_backgroud">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/margin16"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp">
+
+                <ImageView
+                    android:id="@+id/img_question"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/question_circle" />
+            </RelativeLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:background="@drawable/item_top_diary"
+                android:weightSum="8">
+
+                <RelativeLayout
+                    android:id="@+id/rl1"
+                    android:layout_width="75dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="49dp"
+                        android:layout_height="49dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_night" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintLeft_toRightOf="@id/rl1"
+                    app:layout_constraintRight_toLeftOf="@id/ln2">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/hiragino_sans_w6"
+                            android:text="Thời gian ngủ"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_17" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/hiragino_sans_w3"
+                            android:lineSpacingMultiplier="1.3"
+                            android:text="Ngủ khoảng 6-8 / ngày"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_14" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ln2"
+                    android:layout_width="45dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/txtReach1"
+                        android:layout_width="40dp"
+                        android:layout_height="26dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/coner_text"
+                        android:fontFamily="@font/hiragino_sans_w6"
+                        android:gravity="center"
+                        android:text="@string/done"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:visibility="invisible" />
+
+                    <CheckBox
+                        android:id="@+id/check1"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/customcheckbox"
+                        android:button="@null"
+                        android:checked="false" />
+
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:background="#494FE6"
+                android:weightSum="8">
+
+                <RelativeLayout
+                    android:id="@+id/rl2"
+                    android:layout_width="75dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="49dp"
+                        android:layout_height="49dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_drink" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintLeft_toRightOf="@id/rl2"
+                    app:layout_constraintRight_toLeftOf="@id/ln1">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/hiragino_sans_w6"
+                            android:text="Sử dụng chất có cồn"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_17" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/hiragino_sans_w3"
+                            android:lineSpacingMultiplier="1.3"
+                            android:text="Giảm lượng cồn sử dụng và có ít nhất 2 ngày nghỉ mỗi tuần"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_14" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ln1"
+                    android:layout_width="45dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/txtReach2"
+                        android:layout_width="40dp"
+                        android:layout_height="26dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/coner_text"
+                        android:fontFamily="@font/hiragino_sans_w6"
+                        android:gravity="center"
+                        android:text="@string/done"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:visibility="invisible" />
+
+                    <CheckBox
+                        android:id="@+id/check2"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/customcheckbox"
+                        android:button="@null"
+                        android:checked="false" />
+
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:background="#517CE7"
+                android:weightSum="8">
+
+                <RelativeLayout
+                    android:id="@+id/rl3"
+                    android:layout_width="75dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="49dp"
+                        android:layout_height="49dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_set" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintLeft_toRightOf="@id/rl3"
+                    app:layout_constraintRight_toLeftOf="@id/ln3">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/hiragino_sans_w6"
+                            android:text="Ngồi nhiều"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_17" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/hiragino_sans_w3"
+                            android:lineSpacingMultiplier="1.3"
+                            android:text="Tập thể dục 5 phút mỗi giờ hoặc đi bộ 250 bước trở lên."
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_14" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ln3"
+                    android:layout_width="45dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/txtReach3"
+                        android:layout_width="40dp"
+                        android:layout_height="26dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/coner_text"
+                        android:fontFamily="@font/hiragino_sans_w6"
+                        android:gravity="center"
+                        android:text="@string/done"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:visibility="invisible" />
+
+                    <CheckBox
+                        android:id="@+id/check3"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/customcheckbox"
+                        android:button="@null"
+                        android:checked="false" />
+
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:background="#61AAE9"
+                android:weightSum="8">
+
+                <RelativeLayout
+                    android:id="@+id/rl4"
+                    android:layout_width="75dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="49dp"
+                        android:layout_height="49dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_water" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintLeft_toRightOf="@id/rl4"
+                    app:layout_constraintRight_toLeftOf="@id/ln4">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/hiragino_sans_w6"
+                            android:text="Uống nước"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_17" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/hiragino_sans_w3"
+                            android:lineSpacingMultiplier="1.3"
+                            android:text="Uống đủ 1,2 -2L nước mỗi ngày"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_14" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ln4"
+                    android:layout_width="45dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/txtReach4"
+                        android:layout_width="40dp"
+                        android:layout_height="26dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/coner_text"
+                        android:fontFamily="@font/hiragino_sans_w6"
+                        android:gravity="center"
+                        android:text="OK"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:visibility="invisible" />
+
+                    <CheckBox
+                        android:id="@+id/check4"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/customcheckbox"
+                        android:button="@null"
+                        android:checked="false" />
+
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:background="#69C4E2"
+                android:weightSum="8">
+
+                <RelativeLayout
+                    android:id="@+id/rl5"
+                    android:layout_width="75dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="49dp"
+                        android:layout_height="49dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_frust" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintLeft_toRightOf="@id/rl5"
+                    app:layout_constraintRight_toLeftOf="@id/ln5">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/hiragino_sans_w6"
+                            android:text="Bữa ăn"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_17" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/hiragino_sans_w3"
+                            android:lineSpacingMultiplier="1.3"
+                            android:text="Ăn một chế độ ăn uống cân bằng lượng calo tương ứng với hoạt động của bạn。"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_14" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ln5"
+                    android:layout_width="45dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/txtReach5"
+                        android:layout_width="40dp"
+                        android:layout_height="26dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/coner_text"
+                        android:fontFamily="@font/hiragino_sans_w6"
+                        android:gravity="center"
+                        android:text="@string/done"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:visibility="invisible" />
+
+                    <CheckBox
+                        android:id="@+id/check5"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/customcheckbox"
+                        android:button="@null"
+                        android:checked="false" />
+
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:background="@drawable/item_bottom_diary"
+                android:weightSum="8">
+
+                <RelativeLayout
+                    android:id="@+id/rl6"
+                    android:layout_width="75dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="49dp"
+                        android:layout_height="49dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_run" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintLeft_toRightOf="@id/rl6"
+                    app:layout_constraintRight_toLeftOf="@id/ln6">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/hiragino_sans_w6"
+                            android:text="Tập luyện"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_17" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/hiragino_sans_w3"
+                            android:lineSpacingMultiplier="1.3"
+                            android:text="Hãy tập thể dục 30 phút mỗi ngày"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_14" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ln6"
+                    android:layout_width="45dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/txtReach6"
+                        android:layout_width="40dp"
+                        android:layout_height="26dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/coner_text"
+                        android:fontFamily="@font/hiragino_sans_w6"
+                        android:gravity="center"
+                        android:text="@string/done"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:visibility="invisible" />
+
+                    <CheckBox
+                        android:id="@+id/check6"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/customcheckbox"
+                        android:button="@null"
+                        android:checked="false" />
+
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="35dp">
+
+
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</layout>

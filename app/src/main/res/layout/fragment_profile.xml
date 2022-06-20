@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#EFF1F5"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="#fff">
+
+            <TextView
+                android:id="@+id/txtCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="21dp"
+                android:fontFamily="@font/hiragino_sans_w4"
+                android:textColor="#357AFF"
+                android:textFontWeight="600"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/hiragino_sans_w4"
+                android:text="Cài đặt"
+                android:textColor="#000"
+                android:textFontWeight="600"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="19dp"
+                android:fontFamily="@font/hiragino_sans_w4"
+                android:text="Lưu"
+                android:textColor="#357AFF"
+                android:textFontWeight="600"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#EFF1F5"
+                android:orientation="vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="88dp"
+                    android:layout_height="88dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="50dp"
+                    android:src="@drawable/person_crop_circle" />
+
+                <TextView
+                    android:id="@+id/userid"
+                    android:layout_width="match_parent"
+                    android:layout_height="28dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/hiragino_sans_w4"
+                    android:gravity="center"
+                    android:text="ID: 1003"
+                    android:textColor="@color/black"
+                    android:textFontWeight="600"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="11dp"
+                    android:layout_marginVertical="10dp"
+                    android:fontFamily="@font/hiragino_sans_w4"
+                    android:text="Thông tin"
+                    android:textColor="#000000"
+                    android:textFontWeight="600"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvErroEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="11dp"
+                    android:textColor="@color/red"
+                    android:visibility="invisible" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="#fff"
+                    app:cardElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:id="@+id/rlName"
+                            android:layout_width="match_parent"
+                            android:layout_height="44dp"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginRight="32dp">
+
+                            <TextView
+                                android:id="@+id/nameUser"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:fontFamily="@font/hiragino_sans_w4"
+                                android:lineHeight="22dp"
+                                android:text="Tên"
+                                android:textColor="@color/black"
+                                android:textFontWeight="600"
+                                android:textSize="13dp" />
+
+                            <TextView
+                                android:text="Nguyễn A"
+                                android:id="@+id/txtName"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="5dp"
+                                android:layout_toStartOf="@id/imgNextName"
+                                android:fontFamily="@font/hiragino_sans_w4"
+                                android:includeFontPadding="true"
+                                android:singleLine="true"
+                                android:textColor="#000000"
+                                android:textFontWeight="600"
+                                android:textSize="13dp" />
+
+                            <ImageView
+                                android:id="@+id/imgNextName"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_next" />
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginHorizontal="16dp"
+                            android:background="#EFF1F5" />
+
+                        <RelativeLayout
+                            android:id="@+id/rlBirth"
+                            android:layout_width="match_parent"
+                            android:layout_height="44dp"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginRight="32dp">
+
+                            <TextView
+                                android:id="@+id/birthday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:fontFamily="@font/hiragino_sans_w4"
+                                android:text="Ngày sinh"
+                                android:textColor="@color/black"
+                                android:textFontWeight="600"
+                                android:textSize="13dp" />
+
+                            <TextView
+                                android:text="9/6/1999"
+                                android:id="@+id/txtBirth"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="5dp"
+                                android:layout_toStartOf="@id/imgNextBirth"
+                                android:fontFamily="@font/hiragino_sans_w4"
+                                android:textColor="@color/black"
+                                android:textFontWeight="600"
+                                android:textSize="13sp" />
+
+                            <ImageView
+                                android:id="@+id/imgNextBirth"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_next" />
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginHorizontal="16dp"
+                            android:background="#EFF1F5" />
+
+                        <RelativeLayout
+                            android:id="@+id/rl_gender"
+                            android:layout_width="match_parent"
+                            android:layout_height="44dp"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginRight="32dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:fontFamily="@font/hiragino_sans_w4"
+                                android:text="Giới tính"
+                                android:textColor="@color/black"
+                                android:textFontWeight="600"
+                                android:textSize="13dp" />
+
+                            <TextView
+                                android:id="@+id/txtGender"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp"
+                                android:layout_toStartOf="@id/imgNextSex"
+                                android:fontFamily="@font/hiragino_sans_w4"
+                                android:text="Nữ"
+                                android:textColor="#000000"
+                                android:textFontWeight="600"
+                                android:textSize="13dp" />
+
+                            <ImageView
+                                android:id="@+id/imgNextSex"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_next" />
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginHorizontal="16dp"
+                            android:background="#EFF1F5" />
+
+                        <RelativeLayout
+                            android:id="@+id/rlTall"
+                            android:layout_width="match_parent"
+                            android:layout_height="44dp"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginRight="32dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:fontFamily="@font/hiragino_sans_w4"
+                                android:text="Chiều cao"
+                                android:textColor="@color/black"
+                                android:textFontWeight="600"
+                                android:textSize="13dp" />
+
+                            <TextView
+                                android:id="@+id/txtTall"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="5dp"
+                                android:layout_toStartOf="@id/imgNextTall"
+                                android:fontFamily="@font/hiragino_sans_w4"
+                                android:text="150cm"
+                                android:textColor="#000000"
+                                android:textFontWeight="600"
+                                android:textSize="13dp" />
+
+                            <ImageView
+                                android:id="@+id/imgNextTall"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_next" />
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginHorizontal="16dp"
+                            android:background="#EFF1F5" />
+
+                        <RelativeLayout
+                            android:id="@+id/rlWeight"
+                            android:layout_width="match_parent"
+                            android:layout_height="44dp"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginRight="32dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:fontFamily="@font/hiragino_sans_w4"
+                                android:text="Cân nặng"
+                                android:textColor="@color/black"
+                                android:textFontWeight="600"
+                                android:textSize="13dp" />
+
+                            <TextView
+                                android:id="@+id/txtWeight"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="5dp"
+                                android:layout_toStartOf="@id/imgNextWeight"
+                                android:fontFamily="@font/hiragino_sans_w4"
+                                android:text="45 kg"
+                                android:textColor="#000000"
+                                android:textFontWeight="600"
+                                android:textSize="13dp" />
+
+                            <ImageView
+                                android:id="@+id/imgNextWeight"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_next" />
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginHorizontal="16dp"
+                            android:background="#EFF1F5" />
+
+                        <RelativeLayout
+                            android:id="@+id/rlProfession"
+                            android:layout_width="match_parent"
+                            android:layout_height="44dp"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginRight="32dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:fontFamily="@font/hiragino_sans_w4"
+                                android:text="Nghề nghiệp"
+                                android:textColor="@color/black"
+                                android:textFontWeight="600"
+                                android:textSize="13dp" />
+
+                            <TextView
+                                android:text="Sinh viên"
+                                android:id="@+id/txtProfess"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="5dp"
+                                android:layout_toStartOf="@id/imgNextProfession"
+                                android:fontFamily="@font/hiragino_sans_w4"
+                                android:textColor="#000000"
+                                android:textFontWeight="600"
+                                android:textSize="13dp" />
+
+                            <ImageView
+                                android:id="@+id/imgNextProfession"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_next" />
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginHorizontal="16dp"
+                            android:background="#EFF1F5" />
+
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginHorizontal="16dp"
+                            android:background="#EFF1F5" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="44dp">
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </ScrollView>
+
+
+    </LinearLayout>
+
+
+</layout>

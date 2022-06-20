@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/li_regis_profile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="20.5dp"
+                    android:layout_marginBottom="11.5dp"
+                    android:fontFamily="@font/hiragino_sans_w4"
+                    android:text="Thông tin cơ bản"
+                    android:textColor="@color/black"
+                    android:textFontWeight="600"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvSave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:fontFamily="@font/hiragino_sans_w4"
+                    android:text="Lưu"
+                    android:textColor="@color/blue_414b77"
+                    android:textFontWeight="600"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="21.5dp">
+
+                    <TextView
+                        android:id="@+id/tvName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:text="Tên"
+                        android:textColor="@color/black"
+                        android:textFontWeight="400"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="*"
+                        android:textColor="@color/red"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <com.dd.ShadowLayout
+                    android:id="@+id/shawdowName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvName"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginTop="10dp"
+                    app:sl_cornerRadius="8dp"
+                    app:sl_dx="0dp"
+                    app:sl_dy="1dp"
+                    app:sl_shadowColor="#1A000000"
+                    app:sl_shadowRadius="6dp">
+
+                    <EditText
+                        android:id="@+id/edtName"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginHorizontal="19dp"
+                        android:layout_marginTop="4dp"
+                        android:backgroundTint="@color/white"
+                        android:hint="Tên"
+                        android:maxLength="254"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textFontWeight="400"
+                        android:textSize="16sp" />
+                </com.dd.ShadowLayout>
+
+                <TextView
+                    android:id="@+id/tvNameError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:text="Vui lòng điền tên"
+                    android:textColor="@color/red"
+                    android:visibility="invisible" />
+                <!--        birth day-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="28dp">
+
+                    <TextView
+                        android:id="@+id/tvBirthDay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:text="Sinh nhật"
+                        android:textColor="@color/black"
+                        android:textFontWeight="400"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="*"
+                        android:textColor="@color/red"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+
+                <com.dd.ShadowLayout
+                    android:id="@+id/shawdowBirthDay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvName"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginTop="10dp"
+                    app:sl_cornerRadius="8dp"
+                    app:sl_dx="0dp"
+                    app:sl_dy="1dp"
+                    app:sl_shadowColor="#1A000000"
+                    app:sl_shadowRadius="6dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp">
+
+                        <EditText
+                            android:id="@+id/edtBirthDay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="44dp"
+                            android:layout_marginHorizontal="19dp"
+                            android:layout_marginTop="4dp"
+                            android:backgroundTint="@color/white"
+                            android:gravity="center"
+                            android:hint="Ngày sinh"
+                            android:singleLine="true"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/imgCalender"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@id/edtBirthDay"
+                            android:src="@drawable/calendar"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.9"
+                            app:layout_constraintStart_toEndOf="@id/edtBirthDay"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.5" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.dd.ShadowLayout>
+
+                <TextView
+                    android:id="@+id/tvBirthError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:text="Vui lòng chọn ngày sinh"
+                    android:textColor="@color/red"
+                    android:visibility="invisible" />
+                <!-- gender-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="21.5dp">
+
+                    <TextView
+                        android:id="@+id/tvGender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:text="Giới tính"
+                        android:textColor="@color/black"
+                        android:textFontWeight="400"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="*"
+                        android:textColor="@color/red"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <com.dd.ShadowLayout
+                    android:id="@+id/shawdowGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvName"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginTop="10dp"
+                    app:sl_cornerRadius="8dp"
+                    app:sl_dx="0dp"
+                    app:sl_dy="1dp"
+                    app:sl_shadowColor="#1A000000"
+                    app:sl_shadowRadius="6dp">
+
+                    <Spinner
+                        android:id="@+id/spinGender"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginHorizontal="19dp"
+                        android:singleLine="true" />
+                </com.dd.ShadowLayout>
+
+                <TextView
+                    android:id="@+id/tvGenderError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:text="Vui lòng chọn giới tính"
+                    android:textColor="@color/red"
+                    android:visibility="invisible" />
+                <!--Height-->
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="28dp">
+
+                    <EditText
+                        android:id="@+id/tvHeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:text="Chiều cao"
+                        android:textColor="@color/black"
+                        android:textFontWeight="400"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="*"
+                        android:textColor="@color/red"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+
+                <com.dd.ShadowLayout
+                    android:id="@+id/shawdowHeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvName"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginTop="10dp"
+                    app:sl_cornerRadius="8dp"
+                    app:sl_dx="0dp"
+                    app:sl_dy="1dp"
+                    app:sl_shadowColor="#1A000000"
+                    app:sl_shadowRadius="6dp">
+
+                    <EditText
+                        android:id="@+id/edtHeigh"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginHorizontal="19dp"
+                        android:layout_marginTop="4dp"
+                        android:backgroundTint="@color/white"
+                        android:gravity="center_vertical"
+                        android:singleLine="true"
+                        android:text="170 cm"
+                        android:textColor="@color/black"
+                        android:textFontWeight="400"
+                        android:textSize="16sp" />
+                </com.dd.ShadowLayout>
+
+                <TextView
+                    android:id="@+id/tvHeightError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:text="Vui lòng nhập chiều cao"
+                    android:textColor="@color/red"
+                    android:visibility="invisible" />
+                <!--weight-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="28dp">
+
+                    <TextView
+                        android:id="@+id/tvWeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:text="Cân nặng"
+                        android:textColor="@color/black"
+                        android:textFontWeight="400"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="*"
+                        android:textColor="@color/red"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+
+                <com.dd.ShadowLayout
+                    android:id="@+id/shawdowWeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvName"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginTop="10dp"
+                    app:sl_cornerRadius="8dp"
+                    app:sl_dx="0dp"
+                    app:sl_dy="1dp"
+                    app:sl_shadowColor="#1A000000"
+                    app:sl_shadowRadius="6dp">
+
+                    <EditText
+                        android:id="@+id/edtWeigh"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginHorizontal="19dp"
+                        android:layout_marginTop="4dp"
+                        android:backgroundTint="@color/white"
+                        android:gravity="center_vertical"
+                        android:singleLine="true"
+                        android:text="70 kg"
+                        android:textColor="@color/black"
+                        android:textFontWeight="400"
+                        android:textSize="16sp" />
+                </com.dd.ShadowLayout>
+
+                <TextView
+                    android:id="@+id/tvWeightError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:text="Vui lòng nhập cân nặng"
+                    android:textColor="@color/red"
+                    android:visibility="invisible" />
+                <!--        work-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="28dp">
+
+                    <TextView
+                        android:id="@+id/tvWork"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:text="Nghề nghiệp"
+                        android:textColor="@color/black"
+                        android:textFontWeight="400"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="*"
+                        android:textColor="@color/red"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+
+                <com.dd.ShadowLayout
+                    android:id="@+id/shawdowWork"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvName"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginTop="10dp"
+                    app:sl_cornerRadius="8dp"
+                    app:sl_dx="0dp"
+                    app:sl_dy="1dp"
+                    app:sl_shadowColor="#1A000000"
+                    app:sl_shadowRadius="6dp">
+
+                    <Spinner
+                        android:id="@+id/spinWork"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginHorizontal="19dp" />
+                </com.dd.ShadowLayout>
+
+                <TextView
+                    android:id="@+id/tvWorkError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:text="Vui lòng chọn nghề nghiệp"
+                    android:textColor="@color/red"
+                    android:visibility="invisible" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="28dp">
+                    <!--        address-->
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
+
+
+</layout>

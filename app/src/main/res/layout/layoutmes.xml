@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/text_20">
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:fontFamily="@font/hiragino_sans_w6"
+        android:lineSpacingMultiplier="1.2"
+        android:text="Đánh giá tình trạng dinh dưỡng của bạn"
+        android:textColor="@color/black_383838"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/txt_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/text_10"
+        android:layout_marginStart="@dimen/text_20"
+        android:layout_marginTop="7dp"
+        android:fontFamily="@font/hiragino_sans_w3"
+        android:lineSpacingMultiplier="1.2"
+        android:textColor="@color/black_383838"
+        android:textSize="16sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"/>
+</LinearLayout>

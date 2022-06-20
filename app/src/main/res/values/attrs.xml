@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="HoloCircleSeekBar">
+        <attr name="wheel_size" format="integer" />
+        <attr name="pointer_size" format="dimension" />
+        <attr name="max" format="integer"/>
+        <attr name="show_text" format="boolean"/>
+        <attr name="start_angle" format="integer"/>
+        <attr name="end_angle" format="integer"/>
+        <attr name="text_size" format="dimension"/>
+        <attr name="init_position" format="integer"/>
+        <attr name="wheel_active_color" format="string"/>
+        <attr name="wheel_unactive_color" format="string"/>
+        <attr name="pointer_color" format="string"/>
+        <attr name="pointer_halo_color" format="string"/>
+        <attr name="text_color" format="string"/>
+    </declare-styleable>
+    <!-- Whether to enable anti-aliasing -->
+    <attr name="antiAlias" format="boolean" />
+    <!-- The starting angle of the arc, 3 o'clock direction is 0, increasing clockwise, less than 0 or greater than 360 to take the remainder -->
+    <attr name="startAngle" format="float" />
+    <!-- arc degree -->
+    <attr name="sweepAngle" format="float" />
+    <!-- Set animation time -->
+    <attr name="animTime" format="integer" />
+    <!-- The value of the drawing content -->
+    <attr name="maxValue" format="float" />
+    <attr name="value" format="float" />
+    <!-- The unit for drawing content -->
+    <attr name="unit" format="string|reference" />
+    <attr name="unitSize" format="dimension" />
+    <attr name="unitColor" format="color|reference" />
+    <!-- draw the corresponding prompt message of the content -->
+    <attr name="hint" format="string|reference" />
+    <attr name="hintSize" format="dimension" />
+    <attr name="hintColor" format="color|reference" />
+    <!-- precision, the default is 0 -->
+    <attr name="precision" format="integer" />
+    <attr name="valueSize" format="dimension" />
+    <attr name="valueColor" format="color|reference" />
+    <!-- Background arc color, default white -->
+    <attr name="bgArcColor" format="color|reference" />
+    <!-- Arc width -->
+    <attr name="arcWidth" format="dimension" />
+    <!-- Arc color, -->
+    <attr name="arcColors" format="color|reference" />
+    <!-- The offset of the text relative to the radius of the circle, the default one-third -->
+    <attr name="textOffsetPercentInRadius" format="float" />
+    <!-- Background arc width -->
+    <attr name="bgArcWidth" format="dimension" />
+    <!-- Number of lines -->
+    <attr name="dottedLineCount" format="integer" />
+    <!-- Distance between arc and dotted line -->
+    <attr name="lineDistance" format="integer" />
+    <!-- Line width -->
+    <attr name="dottedLineWidth" format="dimension" />
+    <!-- Foreground color of the progress bar Starting color -->
+    <attr name="foreStartColor" format="color" />
+    <!-- Foreground color of the progress bar End color -->
+    <attr name="foreEndColor" format="color" />
+
+    <declare-styleable name="CircleProgressBar">
+        <attr name="antiAlias" />
+        <attr name="startAngle" />
+        <attr name="sweepAngle" />
+        <attr name="animTime" />
+        <attr name="maxValue" />
+        <attr name="value" />
+        <attr name="unit" />
+        <attr name="unitSize" />
+        <attr name="unitColor" />
+        <attr name="hint" />
+        <attr name="hintSize" />
+        <attr name="hintColor" />
+        <attr name="precision" />
+        <attr name="valueSize" />
+        <attr name="valueColor" />
+        <attr name="bgArcColor" />
+        <attr name="arcWidth" />
+        <attr name="arcColors" />
+        <attr name="textOffsetPercentInRadius" />
+        <attr name="bgArcWidth" />
+        <attr name="dottedLineCount" />
+        <attr name="lineDistance" />
+        <attr name="dottedLineWidth" />
+        <attr name="foreStartColor" />
+        <attr name="foreEndColor" />
+
+    </declare-styleable>
+
+</resources>

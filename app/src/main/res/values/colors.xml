@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="txt_color">#494F70</color>
+    <color name="main_color">#81C45D</color>
+    <color name="transperant">#00000000</color>
+    <color name="transperant_btn">#57CDCDCD</color>
+    <color name="color_green">#3BDB82</color>
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="white_eeeff3">#eeeff3</color>
+    <color name="blue_414b77">#414b77</color>
+    <color name="black_000">#000</color>
+    <color name="gray_c0c0c0">#c0c0c0</color>
+    <color name="gray_999">#999</color>
+    <color name="black_1f1f1f">#1f1f1f</color>
+    <color name="black_404040">#404040</color>
+    <color name="black_383838">#383838</color>
+    <color name="white_ffffff">#ffffff</color>
+    <color name="blute_5e678c">#5e678c</color>
+    <color name="gray_aaaaaa">#aaaaaa</color>
+    <color name="black_000000">#000000</color>
+    <color name="gray_c8c8cd">#c8c8cd</color>
+    <color name="main_color_backgroud">#efeff4</color>
+    <color name="txt_color_414b77">#414B77</color>
+    <color name="color_icon_next">#00000073</color>
+    <color name="gray_e3e3e3">#e3e3e3</color>
+    <color name="dlg_background_white">#E3FFFFFF</color>
+    <color name="transparent_color">#00FFFFFF</color>
+    <color name="transparent_dlg_gray">#E3E3E3E3</color>
+    <color name="white_efeff4">#efeff4</color>
+    <color name="black_bbb">#bbb</color>
+    <color name="gray_f7f7f8">#f7f7f8</color>
+    <color name="gray_acacac">#acacac</color>
+    <color name="red_fa2d2d">#fa2d2d</color>
+    <color name="green_018577">#018577</color>
+    <color name="blue_2c3764">#2c3764</color>
+    <color name="red">#ff0000</color>
+    <color name="overlay">#BF000000</color>
+    <color name="white_fff">#fff</color>
+    <color name="back_000">#000</color>
+    <color name="yellow">#E8B82A</color>
+
+</resources>

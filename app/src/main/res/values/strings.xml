@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">Healthy</string>
+    <string name="done">Ok</string>
+
+    <string name="output_header_template">Heart rate on %s</string>
+    <string name="output_detected_peaks_header">Detected Peaks:</string>
+    <string name="send_output_to">Send output to:</string>
+    <string name="separator">,</string>
+    <string name="row_separator">\n</string>
+    <string name="raw_values">Measurements (Timestamp, Value)</string>
+    <string name="cameraPermissionRequired">Camera permission is required for this application to work.</string>
+    <string name="noFlashWarning">Measurement without flash is less reliable.</string>
+    <string name="new_measurement">New Measurement</string>
+    <string name="export_result">Export Result</string>
+    <string name="export_details">Export Details</string>
+    <string name="dateFormat">yyyy-MM-dd\'T\'HH:mm:ssZZZZZ</string>
+    <string name="dateFormatGranular">yyyy-MM-dd\'T\'HH:mm:ss.SSSZZZZZ</string>
+    <string name="camera_not_found">Camera not available.</string>
+    <plurals name="measurement_output_template">
+        <item quantity="zero">Pulse: %2.1f (%d cycle in %2.1f seconds)</item>
+        <item quantity="one">Pulse: %2.1f (%d cycle in %2.1f seconds)</item>
+        <item quantity="other">Pulse: %2.1f (%d cycles in %2.1f seconds)</item>
+    </plurals>
+    <string name="steps">%1$d</string>
+    <string name="steps1">Steps: %1$d</string>
+    <string name="time"> %1$s</string>
+    <string name="speed">Average speed: %1$d steps/min</string>
+    <string name="distance"> %1$s m</string>
+    <string name="orientation">Orientation: %1$s</string>
+    <string name="record">Today\'s Goal: %1$d steps</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="message_sign_in">Run for your Life ...\n ....Walk for your Heart</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="instructions">Place your finger gently on the back of the camera overlapping the flashlight .\n\n DO NOT PRESS , It might break the blood flow . \n\n Try to keep the finger still as possible . \n\n Press START to start monitoring .</string>
+    <string name="it_vd">Ít vận động</string>
+    <string name="vd_nhe">Vận động nhẹ</string>
+    <string name="vd_vua_phai">Vận động vừa phải</string>
+    <string name="vd_nhieu">Vận động nhiều</string>
+    <string name="vd_cao">Vận động cường độ cao</string>
+    <string name="nam">Nam</string>
+    <string name="nu">Nữ</string>
+    <string name="arg_alarm_obj">AlarmObject</string>
+    <string name="bundle_alarm_obj">BundleAlarmObject</string>
+    <string name="alarm_title">My Alarm</string>
+    <string name="dayNightTheme">DayNightTheme</string>
+</resources>

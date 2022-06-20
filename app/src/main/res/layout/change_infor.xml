@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:local="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txt_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/hiragino_sans_w6"
+        android:gravity="center"
+        android:text="Thay đổi thông tin"
+        android:textColor="@color/black_383838"
+        android:textSize="17sp" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
+
+        <EditText
+            android:id="@+id/edt_mail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="35dp"
+            android:hint="Nhập thông tin"
+            app:boxStrokeWidth="0.5dp" />
+
+        <TextView
+            android:id="@+id/txt_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="3dp"
+            android:layout_toStartOf="@+id/img_clear_mail"
+            android:fontFamily="@font/hiragino_sans_w3"
+            android:textColor="@color/gray_c0c0c0" />
+
+        <ImageView
+            android:id="@+id/img_clear_mail"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="45dp"
+            android:alpha="0.45"
+            android:src="@drawable/clear_text"
+            android:visibility="invisible"
+            app:tint="@color/gray_999" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txtError"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/edt_mail"
+        android:layout_marginHorizontal="35dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/hiragino_sans_w3"
+        android:includeFontPadding="false"
+        android:text="連続８桁の半角数字で入。"
+        android:textColor="@color/red"
+        android:textSize="12sp"
+        android:visibility="invisible" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#e4e4e4" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <RelativeLayout
+            android:id="@+id/rl_cancel"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_touch_dialog">
+
+            <TextView
+                android:id="@+id/txtCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/hiragino_sans_w3"
+                android:text="Hủy"
+                android:textColor="@color/blue_414b77"
+                android:textSize="17sp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:background="#e4e4e4" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlChange"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_touch_dialog">
+
+            <TextView
+                android:id="@+id/txtOk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/hiragino_sans_w3"
+                android:text="Thay đổi"
+                android:textColor="@color/blue_414b77"
+                android:textSize="17sp" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
