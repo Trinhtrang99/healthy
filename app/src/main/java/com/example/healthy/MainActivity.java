@@ -62,6 +62,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         Intent startIntent = new Intent(this, StepService.class);
         startIntent.setAction(Constants.START_FOREGROUND);
@@ -226,4 +227,6 @@ public class MainActivity extends BaseActivity {
         return formattedDate;
 
     }
+
+
 }
