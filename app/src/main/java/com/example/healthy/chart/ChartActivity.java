@@ -66,7 +66,6 @@ public class ChartActivity extends AppCompatActivity {
 
         ArrayList<Float> dataListF = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
-
             dataListF.add(Float.parseFloat(list.get(i).Calorie));
         }
 
@@ -77,7 +76,7 @@ public class ChartActivity extends AppCompatActivity {
 
         ArrayList<Float> dataListF3 = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
-            dataListF3.add(Float.parseFloat(list.get(i).sleep));
+            dataListF3.add(Float.parseFloat(list.get(i).water));
         }
 
         ArrayList<Float> dataListF4 = new ArrayList<>();

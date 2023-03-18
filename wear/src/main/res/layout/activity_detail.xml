@@ -4,10 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/blue_2c3764"
     android:padding="24dp"
     tools:context=".Detail">
 
     <TextView
+        android:textColor="@color/white"
         android:id="@+id/app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,12 +17,15 @@
 
 
     <TextView
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
         android:id="@+id/last_measured_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/last_measured" />
 
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -39,19 +44,19 @@
             android:visibility="gone" />
 
         <TextView
+            android:textColor="@color/white"
             android:id="@+id/last_measured_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="60.0"
+            android:text="0"
             android:textSize="40sp" />
     </LinearLayout>
 
     <ImageView
+        android:backgroundTint="@color/blue_2c3764"
         android:id="@+id/imgUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:padding="5dp"
         android:src="@drawable/ic_baseline_update_24" />
 </LinearLayout>

@@ -1,8 +1,10 @@
 package com.example.healthy;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
@@ -13,6 +15,8 @@ import com.example.healthy.untils.Constants;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -29,6 +33,7 @@ public class WaterActivity extends AppCompatActivity {
     DbHelper dbHelper;
     private int position;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +43,11 @@ public class WaterActivity extends AppCompatActivity {
         position = dbHelper.getHealthy().size() - 1;
         binding.waveLoadingView.setCenterTitle(dbHelper.getHealthy().get(position).water + " ml");
         list = new ArrayList<>();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDateTime now = LocalDateTime.now();
+        if (!dbHelper.getHealthy().get(position).date.equals(dtf.format(now))) {
+            dbHelper.deleteWater();
+        }
         if (dbHelper.getWater().size() > 0) {
             for (int i = 0; i < dbHelper.getWater().size(); i++) {
                 list.add(dbHelper.getWater().get(i).time);

@@ -61,6 +61,19 @@
         <entry key="..\:/Users/ADMIN/Desktop/Healthy/wear/src/main/res/drawable/ic_heart.xml" value="0.1095" />
         <entry key="..\:/Users/ADMIN/Desktop/Healthy/wear/src/main/res/layout/activity_detail.xml" value="0.6178571428571429" />
         <entry key="..\:/Users/ADMIN/Desktop/Healthy/wear/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/ADMIN/Desktop/app healthy/app/src/main/res/drawable/custom_processbar.xml" value="0.1" />
+        <entry key="..\:/Users/ADMIN/Desktop/app healthy/app/src/main/res/drawable/progress_red.xml" value="0.1" />
+        <entry key="..\:/Users/ADMIN/Desktop/app healthy/app/src/main/res/layout/activity_calories.xml" value="0.25" />
+        <entry key="..\:/Users/ADMIN/Desktop/app healthy/app/src/main/res/layout/activity_chart.xml" value="0.22" />
+        <entry key="..\:/Users/ADMIN/Desktop/app healthy/app/src/main/res/layout/activity_heart_rate.xml" value="0.15925925925925927" />
+        <entry key="..\:/Users/ADMIN/Desktop/app healthy/app/src/main/res/layout/activity_main.xml" value="0.32037037037037036" />
+        <entry key="..\:/Users/ADMIN/Desktop/app healthy/app/src/main/res/layout/activity_time_sleep.xml" value="0.25" />
+        <entry key="..\:/Users/ADMIN/Desktop/app healthy/app/src/main/res/layout/fragment_diary.xml" value="0.1921875" />
+        <entry key="..\:/Users/ADMIN/Desktop/app healthy/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/Users/ADMIN/Desktop/app healthy/app/src/main/res/layout/fragment_tab_viewpager.xml" value="0.15185185185185185" />
+        <entry key="..\:/Users/ADMIN/Desktop/app healthy/wear/src/main/res/layout/activity_detail.xml" value="0.8167539267015707" />
+        <entry key="..\:/Users/ADMIN/Desktop/app healthy/wear/src/main/res/layout/activity_main.xml" value="0.6483050847457628" />
+        <entry key="..\:/Users/ADMIN/Desktop/app healthy/wear/src/main/res/layout/activity_step_count.xml" value="1.2586206896551724" />
       </map>
     </option>
   </component>

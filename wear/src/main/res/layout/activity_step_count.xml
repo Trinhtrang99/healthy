@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/box_inset_layout_padding"
+    android:background="@color/blue_2c3764"
+    tools:context=".StepCount"
+    tools:deviceIds="wear">
+
+    <ImageView
+        android:id="@+id/imgStep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_foot" />
+
+    <TextView
+        android:id="@+id/tvStep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imgStep"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="10dp"
+        android:text="0/120\n Bước"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvStep"
+        android:layout_centerHorizontal="true"
+        android:text="Bắt đầu"
+        android:textAllCaps="false" />
+</RelativeLayout>

@@ -101,6 +101,7 @@
                         android:visibility="invisible" />
 
                     <CheckBox
+                        android:enabled="false"
                         android:id="@+id/check1"
                         android:layout_width="22dp"
                         android:layout_height="22dp"
@@ -189,6 +190,7 @@
                         android:visibility="invisible" />
 
                     <CheckBox
+                        android:enabled="false"
                         android:id="@+id/check2"
                         android:layout_width="22dp"
                         android:layout_height="22dp"
@@ -277,6 +279,7 @@
                         android:visibility="invisible" />
 
                     <CheckBox
+                        android:enabled="false"
                         android:id="@+id/check3"
                         android:layout_width="22dp"
                         android:layout_height="22dp"
@@ -365,6 +368,7 @@
                         android:visibility="invisible" />
 
                     <CheckBox
+                        android:enabled="false"
                         android:id="@+id/check4"
                         android:layout_width="22dp"
                         android:layout_height="22dp"
@@ -453,6 +457,7 @@
                         android:visibility="invisible" />
 
                     <CheckBox
+                        android:enabled="false"
                         android:id="@+id/check5"
                         android:layout_width="22dp"
                         android:layout_height="22dp"
@@ -541,6 +546,7 @@
                         android:visibility="invisible" />
 
                     <CheckBox
+                        android:enabled="false"
                         android:id="@+id/check6"
                         android:layout_width="22dp"
                         android:layout_height="22dp"

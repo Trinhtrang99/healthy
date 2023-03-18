@@ -25,11 +25,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Healthy">
+        <uses-library
+            android:name="com.google.android.wearable"
+            android:required="false" />
+
         <activity
             android:name=".chart.ChartActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:exported="false"
-            android:screenOrientation="landscape" />
+            android:exported="false" />
         <activity
             android:name=".ActivityInfoHealthy"
             android:exported="false" />
@@ -68,7 +71,10 @@
             android:name=".SetUpInfo"
             android:exported="false" />
         <activity android:name=".step.StepActivity" />
-        <activity android:name=".MainActivity" /> <!-- <activity android:name=".step.StepActivity" /> &lt;!&ndash; <activity android:name=".account.ActivityLogin"></activity> &ndash;&gt; -->
+        <activity
+            android:name=".MainActivity"
+            android:resizeableActivity="true"
+            tools:targetApi="n" />
         <activity
             android:name=".SplashActivity"
             android:exported="true">

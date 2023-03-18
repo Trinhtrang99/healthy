@@ -4,6 +4,9 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.graphics.SurfaceTexture;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -14,6 +17,8 @@ import android.view.TextureView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.annotation.WorkerThread;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
@@ -22,9 +27,29 @@ import com.example.healthy.R;
 import com.example.healthy.databinding.ActivityHeartRateBinding;
 import com.example.healthy.sqlite.DbHelper;
 import com.example.healthy.untils.Constants;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
+import com.google.android.gms.wearable.CapabilityClient;
+import com.google.android.gms.wearable.CapabilityInfo;
+import com.google.android.gms.wearable.DataClient;
+import com.google.android.gms.wearable.DataEventBuffer;
+import com.google.android.gms.wearable.MessageClient;
+import com.google.android.gms.wearable.MessageEvent;
+import com.google.android.gms.wearable.Node;
+import com.google.android.gms.wearable.Wearable;
 import com.google.android.material.snackbar.Snackbar;
 
-public class HeartRate extends AppCompatActivity {
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+public class HeartRate extends AppCompatActivity implements
+        DataClient.OnDataChangedListener,
+        MessageClient.OnMessageReceivedListener,
+        CapabilityClient.OnCapabilityChangedListener {
     private OutputAnalyzer analyzer;
 
     private final int REQUEST_CODE_CAMERA = 0;
@@ -47,12 +72,6 @@ public class HeartRate extends AppCompatActivity {
             }
 
             if (msg.what == MESSAGE_UPDATE_FINAL) {
-//                ((EditText) findViewById(R.id.editText)).setText(msg.obj.toString());
-//
-//                // make sure menu items are enabled when it opens.
-//                Menu appMenu = ((Toolbar) findViewById(R.id.toolbar)).getMenu();
-//
-//                setViewState(VIEW_STATE.SHOW_RESULTS);
             }
 
             if (msg.what == MESSAGE_CAMERA_NOT_AVAILABLE) {
@@ -72,7 +91,14 @@ public class HeartRate extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
+        try {
+            Wearable.getDataClient(this).addListener(this);
+            Wearable.getMessageClient(this).addListener(this);
+            Wearable.getCapabilityClient(this)
+                    .addListener(this, Uri.parse("wear://"), CapabilityClient.FILTER_REACHABLE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         analyzer = new OutputAnalyzer(this, binding.graphTextureView, mainHandler);
 
         // TextureView cameraTextureView = findViewById(R.id.textureView2);
@@ -99,11 +125,15 @@ public class HeartRate extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        Wearable.getDataClient(this).removeListener(this);
+        Wearable.getMessageClient(this).removeListener(this);
+        Wearable.getCapabilityClient(this).removeListener(this);
         cameraService.stop();
         if (analyzer != null) analyzer.stop();
         analyzer = new OutputAnalyzer(this, binding.graphTextureView, mainHandler);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,7 +143,16 @@ public class HeartRate extends AppCompatActivity {
                 REQUEST_CODE_CAMERA);
         dbHelper = new DbHelper(this);
         dbHelper.createDataBase();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        binding.save.setOnClickListener(view -> {
+            LocalDateTime current = LocalDateTime.now();
+            String formatted = current.format(formatter);
+            dbHelper.updateHealthy(Constants.HEART, binding.textView.getText().toString().replace("BPM", ""), dbHelper.getHealthy().get(dbHelper.getHealthy().size() - 1).id);
+            StartWearableActivityTask activityTask = new StartWearableActivityTask(binding.textView.getText().toString().replace("BPM", "") + "d" + formatted);
+            activityTask.execute();
+            finish();
 
+        });
     }
 
     @Override
@@ -130,19 +169,9 @@ public class HeartRate extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void onClickNewMeasurement() {
         analyzer = new OutputAnalyzer(this, findViewById(R.id.graphTextureView), mainHandler);
-
-        // clear prior results
-        char[] empty = new char[0];
-//        ((EditText) findViewById(R.id.editText)).setText(empty, 0, 0);
-//        ((TextView) findViewById(R.id.textView)).setText(empty, 0, 0);
-//
-//        // hide the new measurement item while another one is in progress in order to wait
-//        // for the previous one to finish
-//        // Exporting results cannot be done, either, as it would read from the already cleared UI.
-//        setViewState(VIEW_STATE.MEASUREMENT);
-
         TextureView cameraTextureView = findViewById(R.id.textureView2);
         SurfaceTexture previewSurfaceTexture = cameraTextureView.getSurfaceTexture();
 
@@ -153,11 +182,99 @@ public class HeartRate extends AppCompatActivity {
             cameraService.start(previewSurface);
             analyzer.measurePulse(cameraTextureView, cameraService);
         }
+
+
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        dbHelper.updateHealthy(Constants.HEART,binding.textView.getText().toString().replace("BPM", ""), dbHelper.getHealthy().get(dbHelper.getHealthy().size() - 1).id);
+
+
     }
+
+
+    private class StartWearableActivityTask extends AsyncTask<Void, Void, Void> {
+
+        final String key;
+
+        public StartWearableActivityTask(String msg) {
+            key = msg;
+        }
+
+
+        @Override
+        protected Void doInBackground(Void... args) {
+            Collection<String> nodes = getNodes();
+            for (String node : nodes) {
+                sendStartActivityMessage(node, key);
+            }
+            return null;
+        }
+    }
+
+    @WorkerThread
+    private Collection<String> getNodes() {
+        HashSet<String> results = new HashSet<>();
+        Task<List<Node>> nodeListTask =
+                Wearable.getNodeClient(getApplicationContext()).getConnectedNodes();
+        try {
+            // Block on a task and get the result synchronously (because this is on a background
+            // thread).
+            List<Node> nodes = Tasks.await(nodeListTask);
+            for (Node node : nodes) {
+                results.add(node.getId());
+            }
+        } catch (ExecutionException exception) {
+            Log.e("TAG", "Task failed: " + exception);
+        } catch (InterruptedException exception) {
+            Log.e("TAG", "Interrupt occurred: " + exception);
+        }
+        return results;
+    }
+
+    @WorkerThread
+    private void sendStartActivityMessage(String node, String event) {
+
+        Task<Integer> sendMessageTask =
+                Wearable.getMessageClient(this).sendMessage(node, "/HEAR_RATE", event.getBytes());
+
+        try {
+            // Block on a task and get the result synchronously (because this is on a background
+            // thread).
+            Integer result = Tasks.await(sendMessageTask);
+
+        } catch (ExecutionException exception) {
+            Log.e("TAG", "Task failed: " + exception);
+
+        } catch (InterruptedException exception) {
+            Log.e("TAG", "Interrupt occurred: " + exception);
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
+
+
+    @Override
+    public void onCapabilityChanged(@androidx.annotation.NonNull CapabilityInfo capabilityInfo) {
+
+    }
+
+    @Override
+    public void onDataChanged(@androidx.annotation.NonNull DataEventBuffer dataEventBuffer) {
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public void onMessageReceived(@androidx.annotation.NonNull MessageEvent messageEvent) {
+
+
+    }
+
+
 }

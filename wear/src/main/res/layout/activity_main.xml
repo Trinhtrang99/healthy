@@ -5,10 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/box_inset_layout_padding"
+    android:background="@color/blue_2c3764"
     tools:context=".MainActivity"
     tools:deviceIds="wear">
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="20dp"
@@ -17,6 +19,7 @@
         app:layout_boxedEdges="all">
 
         <TextView
+            android:id="@+id/ab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -49,7 +52,10 @@
                 android:id="@+id/btnBlood"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_margin="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/border_btn">
 
 
@@ -63,6 +69,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rootStep"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_alignParentRight="true"

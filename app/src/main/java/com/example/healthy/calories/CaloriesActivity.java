@@ -2,8 +2,11 @@ package com.example.healthy.calories;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -128,18 +131,28 @@ public class CaloriesActivity extends AppCompatActivity {
         binding.tvValueProtein.setText(i + "/" + lbs + "g");
         binding.process1.setMax((int) lbs);
         binding.process1.setProgress(i);
+        if (i > 100) {
+            binding.process1.setProgressTintList(ColorStateList.valueOf(Color.RED));
+        }
 
         int i2 = (int) (lbs * 0.3);
         int i22 = (int) Double.parseDouble(dbHelper.getProtein().fat);
         binding.tvValueFat.setText(i22 + "/" + i2 + "g");
         binding.process2.setMax(i2);
         binding.process2.setProgress(i22);
-
+        if (i22 > 100){
+            binding.process2.setProgressTintList(ColorStateList.valueOf(Color.RED));
+        }
         binding.process3.setMax((int) Math.round((BMR * 100.0) / 100.0));
         binding.tvValueCar.setText(dbHelper.getProtein().kcal + "/" + Math.round((BMR * 100.0) / 100.0) + "kcal");
         int i3 = (int) Double.parseDouble(dbHelper.getProtein().kcal);
         binding.process3.setProgress(i3);
-
+        if (i3 >  Math.round((BMR * 100.0) / 100.0)){
+            binding.process3.setProgressTintList(ColorStateList.valueOf(Color.RED));
+            binding.DanhGia.setVisibility(View.VISIBLE);
+        }else {
+            binding.DanhGia.setVisibility(View.GONE);
+        }
         float persen = (float) (100 / BMR);
         int i4 = (int) (Float.parseFloat(dbHelper.getProtein().kcal) * persen);
         binding.crRun.setPercent(i4);

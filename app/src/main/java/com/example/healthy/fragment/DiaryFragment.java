@@ -69,14 +69,13 @@ public class DiaryFragment extends Fragment {
         dates = DateUtils.getInstance().listDayOfMoth(daysInMonth, Integer.parseInt(formattedMonth), Integer.parseInt(formatted));
 
         viewPagerDateAdapter = new PageAdapter(getChildFragmentManager());
-        for (int i = 0; i < dates.size(); i++) {
+        for (int i = 0; i < 24; i++) {
             viewPagerDateAdapter.addFragment(FragmentTabDiary.newInstance(), dates.get(i));
         }
         binding.viewPager.setAdapter(viewPagerDateAdapter);
         binding.tablayout.setupWithViewPager(binding.viewPager);
         binding.viewPager.setOffscreenPageLimit(3);
         binding.viewPager.setCurrentItem(Integer.parseInt(formattedDay) - 1);
-
 
         return binding.getRoot();
     }

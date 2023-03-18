@@ -45,20 +45,31 @@ public class ActivityTimeSleep extends AppCompatActivity {
         binding.clockSlider.setOnTimeChangedListener(new ClockSlider.OnTimeChangedListener() {
             @Override
             public void onStartChanged(int i, int i1) {
-                binding.timeSleep.setText(i + ":" + i1 + " pm");
+                binding.timeSleep.setText(i + ":" + i1 + " h");
                 hour = i;
                 munie = i1;
             }
 
             @Override
             public void onEndChanged(int i, int i1) {
-                binding.timeWakeup.setText(i + ":" + i1 + " am");
+                binding.timeWakeup.setText(i + ":" + i1 + " h");
             }
         });
         binding.imgBack.setOnClickListener(view -> {
             finish();
         });
+        binding.lnHen.setOnClickListener(view -> {
+            binding.seTime.setVisibility(View.VISIBLE);
+        });
         binding.tvSave.setOnClickListener(view -> {
+            if (binding.seTime.getVisibility() == View.VISIBLE) {
+                String time = binding.edtH.getText().toString() + "." + binding.edtM.getText().toString();
+                binding.clockSlider.setStartHours(Float.parseFloat(time));
+                binding.seTime.setVisibility(View.INVISIBLE);
+                binding.timeSleep.setText(binding.edtH.getText().toString() + ":" + binding.edtM.getText().toString());
+            }
+
+
             float c = 0;
             float a = binding.clockSlider.getEndHours();
             float b = binding.clockSlider.getStartHours();
@@ -99,6 +110,7 @@ public class ActivityTimeSleep extends AppCompatActivity {
         txtCancel.setOnClickListener(v -> {
             alertDialog.dismiss();
         });
+
 
         txtRetry.setOnClickListener(v -> {
             dbHelper.updateHealthy(Constants.SLEEP, e.toString(), dbHelper.getHealthy().get(dbHelper.getHealthy().size() - 1).id);

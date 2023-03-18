@@ -29,10 +29,10 @@ public class SplashActivity extends AppCompatActivity {
         dbHelper.openDataBase();
         if (dbHelper.getInformation().birthday != null) {
             new Handler().postDelayed(() -> startActivity(new Intent(SplashActivity.this,
-                    MainActivity.class)), 5000);
+                    MainActivity.class)), 500);
         } else {
             new Handler().postDelayed(() -> startActivity(new Intent(SplashActivity.this,
-                    ActivityInfoHealthy.class)), 1000);
+                    ActivityInfoHealthy.class)), 500);
         }
 
 

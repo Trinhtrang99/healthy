@@ -7,32 +7,56 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.annotation.WorkerThread;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.example.healthy.R;
+import com.example.healthy.UtriNotes;
 import com.example.healthy.databinding.ActivityStepBinding;
 import com.example.healthy.model.StepModel;
 import com.example.healthy.service.StepService;
 import com.example.healthy.sqlite.DbHelper;
 import com.example.healthy.untils.Constants;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
+import com.google.android.gms.wearable.CapabilityClient;
+import com.google.android.gms.wearable.CapabilityInfo;
+import com.google.android.gms.wearable.DataClient;
+import com.google.android.gms.wearable.DataEventBuffer;
+import com.google.android.gms.wearable.MessageClient;
+import com.google.android.gms.wearable.MessageEvent;
+import com.google.android.gms.wearable.Node;
+import com.google.android.gms.wearable.Wearable;
 
+import java.math.BigInteger;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.ExecutionException;
 
-public class StepActivity extends AppCompatActivity {
+public class StepActivity extends AppCompatActivity implements
+        DataClient.OnDataChangedListener,
+        MessageClient.OnMessageReceivedListener,
+        CapabilityClient.OnCapabilityChangedListener {
 
     private StepService service = null;
     private boolean isBound;
@@ -91,10 +115,13 @@ public class StepActivity extends AppCompatActivity {
         }
 
         binding.btnRun.setOnClickListener(view -> {
-
+            long b = Math.round(RMR) * 20 ;
+            StartWearableActivityTask a = new StartWearableActivityTask(String.valueOf(b));
+            a.execute();
             if (!isBound) {
                 binding.tvMess.setText("Đang kết nối tới sevice đếm bước,....");
             } else if (!service.isActive()) {
+
                 binding.tvStatus.setText("Dừng");
                 binding.tvMess.setText("Cảm biến có độ trễ là 10s....");
                 service.startForegroundService();
@@ -109,10 +136,6 @@ public class StepActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
 
     private boolean checkSensors() {
 
@@ -134,14 +157,6 @@ public class StepActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Intent intent = new Intent(this, StepService.class);
-        bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);
-        handler.postDelayed(timerRunnable, 0);
-
-    }
 
     private ServiceConnection mServiceConnection = new ServiceConnection() {
         @Override
@@ -225,4 +240,112 @@ public class StepActivity extends AppCompatActivity {
         return RMR;
 
     }
+
+
+    private class StartWearableActivityTask extends AsyncTask<Void, Void, Void> {
+
+        final String key;
+
+        public StartWearableActivityTask(String msg) {
+            key = msg;
+        }
+
+
+        @Override
+        protected Void doInBackground(Void... args) {
+            Collection<String> nodes = getNodes();
+            for (String node : nodes) {
+                sendStartActivityMessage(node, key);
+            }
+            return null;
+        }
+    }
+
+    @WorkerThread
+    private Collection<String> getNodes() {
+        HashSet<String> results = new HashSet<>();
+        Task<List<Node>> nodeListTask =
+                Wearable.getNodeClient(getApplicationContext()).getConnectedNodes();
+        try {
+            // Block on a task and get the result synchronously (because this is on a background
+            // thread).
+            List<Node> nodes = Tasks.await(nodeListTask);
+            for (Node node : nodes) {
+                results.add(node.getId());
+            }
+        } catch (ExecutionException exception) {
+            Log.e("TAG", "Task failed: " + exception);
+        } catch (InterruptedException exception) {
+            Log.e("TAG", "Interrupt occurred: " + exception);
+        }
+        return results;
+    }
+
+    @WorkerThread
+    private void sendStartActivityMessage(String node, String event) {
+
+        Task<Integer> sendMessageTask =
+                Wearable.getMessageClient(this).sendMessage(node, "/APP_OPEN_WEARABLE_PAYLOAD", event.getBytes());
+
+        try {
+            // Block on a task and get the result synchronously (because this is on a background
+            // thread).
+            Integer result = Tasks.await(sendMessageTask);
+
+        } catch (ExecutionException exception) {
+            Log.e("TAG", "Task failed: " + exception);
+
+        } catch (InterruptedException exception) {
+            Log.e("TAG", "Interrupt occurred: " + exception);
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
+
+
+    @Override
+    public void onCapabilityChanged(@NonNull CapabilityInfo capabilityInfo) {
+
+    }
+
+    @Override
+    public void onDataChanged(@NonNull DataEventBuffer dataEventBuffer) {
+
+    }
+
+    @Override
+    public void onMessageReceived(@NonNull MessageEvent messageEvent) {
+        Log.d("kmfg", "vào đây");
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        try {
+            Wearable.getDataClient(this).addListener(this);
+            Wearable.getMessageClient(this).addListener(this);
+            Wearable.getCapabilityClient(this)
+                    .addListener(this, Uri.parse("wear://"), CapabilityClient.FILTER_REACHABLE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Intent intent = new Intent(this, StepService.class);
+        bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);
+        handler.postDelayed(timerRunnable, 0);
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Wearable.getDataClient(this).removeListener(this);
+        Wearable.getMessageClient(this).removeListener(this);
+        Wearable.getCapabilityClient(this).removeListener(this);
+    }
+
 }

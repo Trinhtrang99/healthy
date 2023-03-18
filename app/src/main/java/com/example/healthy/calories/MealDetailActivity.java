@@ -65,7 +65,7 @@ public class MealDetailActivity extends BaseActivity {
         binding.rc.setAdapter(adapterAddFood);
         kcalNeed = getIntent().getStringExtra("Kcal");
         type = getIntent().getStringExtra("Title");
-        count = Float.parseFloat(dbHelper.getHealthy().get(dbHelper.getHealthy().size() - 1).Calorie);
+        count = Float.parseFloat(dbHelper.getHealthy().get(dbHelper.getHealthy().size() - 1).energy);
         binding.tvKalo.setText(count + "kcal");
         if (type.equals(Constants.TYPE_MORNING)) {
             binding.tvTitile.setText("Bữa sáng");

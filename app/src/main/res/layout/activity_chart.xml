@@ -1,35 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ffffff">
+
+        <TextView
+            android:id="@+id/tvTitile"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="Biểu đồ đánh giá hoạt động hàng ngày"
+            android:textColor="@color/blue_2c3764"
+            android:textStyle="bold" />
 
         <HorizontalScrollView
             android:id="@+id/horizontalScrollViewFloat"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true">
+            android:layout_below="@id/tvTitile"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp">
 
             <view
                 android:id="@+id/line_view_float"
                 class="im.dacer.androidcharts.LineView"
-                android:layout_width="wrap_content"
-                android:layout_height="250dp" />
+                android:layout_width="match_parent"
+                android:layout_height="350dp" />
         </HorizontalScrollView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="10dp"
-            android:orientation="horizontal"
+            android:layout_below="@id/horizontalScrollViewFloat"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical"
             android:weightSum="4">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -50,6 +66,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:layout_weight="1">
 
                 <View
@@ -69,6 +86,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:layout_weight="1">
 
                 <View
@@ -81,13 +99,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="3dp"
-                    android:text="Kcal đốt cháy (ml)"
+                    android:text="Thời gian nghỉ ngơi (h)"
                     android:textColor="#009688" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:layout_weight="1">
 
                 <View
@@ -100,7 +119,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="3dp"
-                    android:text="Thời gian nghỉ ngơi (h)"
+                    android:text="Lượng kcal đốt cháy"
                     android:textColor="#36F475" />
             </LinearLayout>
 

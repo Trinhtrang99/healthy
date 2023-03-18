@@ -2,6 +2,7 @@ package com.example.healthy.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,21 +21,30 @@ import com.example.healthy.ActivityTimeSleep;
 import com.example.healthy.R;
 import com.example.healthy.WaterActivity;
 import com.example.healthy.adapter.AdapterInfo;
-import com.example.healthy.chart.ChartActivity;
 import com.example.healthy.databinding.FragmentHomeBinding;
 import com.example.healthy.model.Healthy;
 import com.example.healthy.model.Information;
 import com.example.healthy.sqlite.DbHelper;
 import com.example.healthy.step.StepActivity;
 import com.example.healthy.untils.SharedUtils;
+import com.google.android.gms.wearable.CapabilityClient;
+import com.google.android.gms.wearable.CapabilityInfo;
+import com.google.android.gms.wearable.DataClient;
+import com.google.android.gms.wearable.DataEventBuffer;
+import com.google.android.gms.wearable.MessageClient;
+import com.google.android.gms.wearable.MessageEvent;
+import com.google.android.gms.wearable.Wearable;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
-    private FragmentHomeBinding binding;
+public class HomeFragment extends Fragment implements
+        DataClient.OnDataChangedListener,
+        MessageClient.OnMessageReceivedListener,
+        CapabilityClient.OnCapabilityChangedListener {
+    public FragmentHomeBinding binding;
     private AdapterInfo adapterInfo;
     private GridLayoutManager manager;
     private DbHelper dbHelper;
@@ -60,7 +70,7 @@ public class HomeFragment extends Fragment {
 
         binding.crRun.setOnClickListener(view -> {
 
-            Intent i = new Intent(getActivity(), ChartActivity.class);
+            Intent i = new Intent(getActivity(), StepActivity.class);
             startActivity(i);
         });
         binding.crWater.setOnClickListener(view -> {
@@ -80,7 +90,14 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
+        try {
+            Wearable.getDataClient(getActivity()).addListener(this);
+            Wearable.getMessageClient(getActivity()).addListener(this);
+            Wearable.getCapabilityClient(getActivity())
+                    .addListener(this, Uri.parse("wear://"), CapabilityClient.FILTER_REACHABLE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         Float height = Float.parseFloat(dbHelper.getInformation().height.replace("cm", "").trim()) / 100;
         Float weight = Float.parseFloat(dbHelper.getInformation().weight.replace("kg", "").trim());
@@ -117,7 +134,7 @@ public class HomeFragment extends Fragment {
                     BMITEMP.toString(),
                     "0",
                     "0",
-                    dtf.format(now),"0"
+                    dtf.format(now), "0"
             ));
         }
 
@@ -163,13 +180,21 @@ public class HomeFragment extends Fragment {
         binding.crSleep.setPercent((float) (0.09 * 100 * Float.parseFloat(dbHelper.getHealthy().get(position).sleep)));
         binding.tvSleep.setText(dbHelper.getHealthy().get(position).sleep + " h");
         if (Float.parseFloat(dbHelper.getHealthy().get(position).sleep) > 9) {
-              binding.tvStatusSleep.setText("Không tốt");
+            binding.tvStatusSleep.setText("Không tốt");
         } else if (Float.parseFloat(dbHelper.getHealthy().get(position).sleep) <= 9 && Float.parseFloat(dbHelper.getHealthy().get(position).sleep) >= 8) {
             binding.tvStatusSleep.setText("Rất tốt");
         } else if (Float.parseFloat(dbHelper.getHealthy().get(position).sleep) < 8) {
             binding.tvStatusSleep.setText("Chưa tốt");
         }
+        if (Float.parseFloat(dbHelper.getHealthy().get(position).heart) > 80 || Float.parseFloat(dbHelper.getHealthy().get(position).heart) != 0 && Float.parseFloat(dbHelper.getHealthy().get(position).heart) < 60) {
+            binding.DanhGia.setVisibility(View.VISIBLE);
+            binding.DanhGia.setText("Bạn cần được nghỉ ngơi, nhịp tim của bạn không ổn định!!");
+        } else {
+            binding.DanhGia.setVisibility(View.GONE);
+        }
+
     }
+
 
     public Double cacularRMR(String gender, float kg, float cm, int old) {
         double RMR = 0;
@@ -201,4 +226,30 @@ public class HomeFragment extends Fragment {
         return RMR;
 
     }
+
+    @Override
+    public void onCapabilityChanged(@NonNull CapabilityInfo capabilityInfo) {
+
+    }
+
+    @Override
+    public void onDataChanged(@NonNull DataEventBuffer dataEventBuffer) {
+
+    }
+
+    @Override
+    public void onMessageReceived(@NonNull MessageEvent messageEvent) {
+        Log.d("Trang mess", messageEvent.getPath());
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Wearable.getDataClient(getActivity()).removeListener(this);
+        Wearable.getMessageClient(getActivity()).removeListener(this);
+        Wearable.getCapabilityClient(getActivity()).removeListener(this);
+    }
+
+
 }

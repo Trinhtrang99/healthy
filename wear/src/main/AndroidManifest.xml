@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.wear">
+    package="com.example.healthy">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
@@ -17,7 +17,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@android:style/Theme.DeviceDefault">
+        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         <uses-library
             android:name="com.google.android.wearable"
             android:required="true" />
@@ -31,14 +31,22 @@
             android:value="true" />
 
         <activity
+            android:name=".StepCount"
+            android:exported="true"
+            android:label="@string/title_activity_step_count">
+
+        </activity>
+        <activity
             android:name=".Detail"
             android:exported="true"
             android:label="@string/title_activity_detail">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".MainActivity"

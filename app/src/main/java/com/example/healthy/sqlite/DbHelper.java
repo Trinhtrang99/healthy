@@ -256,6 +256,14 @@ public class DbHelper extends SQLiteOpenHelper {
         return list;
     }
 
+    public void deleteWater() {
+
+        openDataBase();
+        mDataBase.execSQL("DELETE FROM water");
+
+        close();
+
+    }
 
     public List<Healthy> getHealthy() {
         List<Healthy> list = new ArrayList<>();

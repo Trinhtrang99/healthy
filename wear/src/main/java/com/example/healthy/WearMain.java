@@ -1,4 +1,4 @@
-package com.example.wear;
+package com.example.healthy;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;

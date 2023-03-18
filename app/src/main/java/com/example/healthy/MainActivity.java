@@ -5,16 +5,20 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
+import androidx.annotation.WorkerThread;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.healthy.base.BaseActivity;
@@ -32,13 +36,28 @@ import com.example.healthy.untils.GpsTracker;
 import com.example.healthy.untils.NotificationPublisher;
 import com.frogobox.notification.FrogoNotification;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
+import com.google.android.gms.wearable.CapabilityClient;
+import com.google.android.gms.wearable.CapabilityInfo;
+import com.google.android.gms.wearable.DataClient;
+import com.google.android.gms.wearable.DataEventBuffer;
+import com.google.android.gms.wearable.MessageClient;
+import com.google.android.gms.wearable.MessageEvent;
+import com.google.android.gms.wearable.Node;
+import com.google.android.gms.wearable.Wearable;
 
+import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ExecutionException;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
@@ -46,7 +65,10 @@ import io.reactivex.rxjava3.core.SingleObserver;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements
+        DataClient.OnDataChangedListener,
+        MessageClient.OnMessageReceivedListener,
+        CapabilityClient.OnCapabilityChangedListener {
     private static final String TAG = "kmfg";
     private ActivityMainBinding binding;
     private HomeFragment homeFragment;
@@ -61,7 +83,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        dbHelper = new DbHelper(this);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         Intent startIntent = new Intent(this, StepService.class);
@@ -137,7 +159,6 @@ public class MainActivity extends BaseActivity {
             double latitude = gpsTracker.getLatitude();
             double longitude = gpsTracker.getLongitude();
             getAqi(latitude, longitude);
-            Log.d("kmfg", latitude + "  " + longitude);
         } else {
             gpsTracker.showSettingsAlert();
         }
@@ -229,4 +250,118 @@ public class MainActivity extends BaseActivity {
     }
 
 
+    private class StartWearableActivityTask extends AsyncTask<Void, Void, Void> {
+
+        final String key;
+
+        public StartWearableActivityTask(String msg) {
+            key = msg;
+        }
+
+
+        @Override
+        protected Void doInBackground(Void... args) {
+            Collection<String> nodes = getNodes();
+            for (String node : nodes) {
+                sendStartActivityMessage(node, key);
+            }
+            return null;
+        }
+    }
+
+    @WorkerThread
+    private Collection<String> getNodes() {
+        HashSet<String> results = new HashSet<>();
+        Task<List<Node>> nodeListTask =
+                Wearable.getNodeClient(getApplicationContext()).getConnectedNodes();
+        try {
+            // Block on a task and get the result synchronously (because this is on a background
+            // thread).
+            List<Node> nodes = Tasks.await(nodeListTask);
+            for (Node node : nodes) {
+                results.add(node.getId());
+            }
+        } catch (ExecutionException exception) {
+            Log.e("TAG", "Task failed: " + exception);
+        } catch (InterruptedException exception) {
+            Log.e("TAG", "Interrupt occurred: " + exception);
+        }
+        return results;
+    }
+
+    @WorkerThread
+    private void sendStartActivityMessage(String node, String event) {
+
+        Task<Integer> sendMessageTask =
+                Wearable.getMessageClient(this).sendMessage(node, "/APP_OPEN_WEARABLE_PAYLOAD", event.getBytes());
+
+        try {
+            // Block on a task and get the result synchronously (because this is on a background
+            // thread).
+            Integer result = Tasks.await(sendMessageTask);
+
+        } catch (ExecutionException exception) {
+            Log.e("TAG", "Task failed: " + exception);
+
+        } catch (InterruptedException exception) {
+            Log.e("TAG", "Interrupt occurred: " + exception);
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
+
+
+    @Override
+    public void onCapabilityChanged(@androidx.annotation.NonNull CapabilityInfo capabilityInfo) {
+
+    }
+
+    @Override
+    public void onDataChanged(@androidx.annotation.NonNull DataEventBuffer dataEventBuffer) {
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public void onMessageReceived(@androidx.annotation.NonNull MessageEvent messageEvent) {
+        String rate = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+        if (rate.isEmpty()) {
+            rate = "0";
+        }
+        dbHelper.updateHealthy(Constants.HEART, rate, dbHelper.getHealthy().get(dbHelper.getHealthy().size() - 1).id);
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment f = fm.findFragmentById(R.id.frame_container);
+        if (f instanceof HomeFragment) {
+            ((HomeFragment) f).onResume();
+        }
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        try {
+            Wearable.getDataClient(this).addListener(this);
+            Wearable.getMessageClient(this).addListener(this);
+            Wearable.getCapabilityClient(this)
+                    .addListener(this, Uri.parse("wear://"), CapabilityClient.FILTER_REACHABLE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Intent intent = new Intent(this, StepService.class);
+
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Wearable.getDataClient(this).removeListener(this);
+        Wearable.getMessageClient(this).removeListener(this);
+        Wearable.getCapabilityClient(this).removeListener(this);
+    }
 }
